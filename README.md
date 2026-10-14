@@ -60,11 +60,11 @@ Every product with enough data is predicted 5x to 15x better than random. Curren
 
 | Group | Finding |
 |---|---|
-| Top segment | Highest add rate (8.5%). Credit card (2.2% against 0.55% overall) and e-account (2.0% against 0.33%) stand out. |
-| Individuals | Largest group (820,000). Steady direct debit (1.7%), pensions and payroll. |
-| University | Lowest rate for every product (1.5% overall). Poor cross-sell targets. |
-| Ages 35 to 50 | Highest add rate (5.5%) among large age groups. |
-| Under 25 | Very low add rates. |
+| Top segment | Highest add rate (8.5%), with credit card (2.2% against 0.55% overall) and e-account (2.0% against 0.33%) standing out |
+| Individuals | Largest group (820,000), with steady direct debit (1.7%), pensions and payroll |
+| University | Lowest rate for every product (1.5% overall), so poor cross-sell targets |
+| Ages 35 to 50 | Highest add rate (5.5%) among large age groups |
+| Under 25 | Very low add rates |
 
 ### Products added together
 
