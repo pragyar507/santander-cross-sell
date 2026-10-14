@@ -1,6 +1,6 @@
 # Bank Cross-Sell Analytics: Predicting the Next Product a Customer Adds
 
-A marketing analytics project on 13.6 million rows of real bank data. It answers one business question: **which customers should a bank target, and with which product, to maximise cross-sell conversion per customer contacted?**
+A marketing analytics project on 13.6 million rows of real bank data. It answers one business question: **which customers should a bank target, and with which product, to maximize cross-sell conversion per customer contacted?**
 
 ## Headline result
 
@@ -28,7 +28,7 @@ The raw file is not in this repository (Kaggle competition rules). Download `tra
 ## Approach
 
 1. **Loading on a small laptop (8 GB):** converted the CSV to Parquet with DuckDB, then loaded only the needed columns with small data types (560 MB in memory).
-2. **Cleaning:** removed impossible ages and a placeholder tenure value, filled missing income by segment median and capped extreme incomes, labelled missing categories Unknown.
+2. **Cleaning:** removed impossible ages and a placeholder tenure value, filled missing income by segment median and capped extreme incomes, labeled missing categories Unknown.
 3. **Defining the target:** a product is "added" when a customer holds it this month and did not last month. The model predicts whether a customer adds at least one product next month.
 4. **Finding a data artifact:** about 193,000 customers appear for the first time in July 2015 with long tenure, and 90% of them hold no product. They are a batch added to the file, not new customers, so the zero-product customers in that batch were excluded from training and testing.
 5. **Time-based split:** trained on months up to February 2016, tested on the latest two months. A random split would leak the future into training.
@@ -44,7 +44,7 @@ The raw file is not in this repository (Kaggle competition rules). Download `tra
 | plus segment and sex | 13.5x | 7.3x | 5.1x |
 | plus recent additions (last 1 and 3 months) | 14.7x | 8.2x | 6.0x |
 
-Recent behaviour and current holdings mattered most. Segment and sex added almost nothing once holdings were known.
+Recent behavior and current holdings mattered most. Segment and sex added almost nothing once holdings were known.
 
 ## Findings
 
@@ -81,7 +81,7 @@ Pensions and direct debit are added in the same month about **20 times more ofte
 
 ## Limitations
 
-- **No campaign data.** The dataset does not say who was contacted, so results describe natural product-adding behaviour. Lift shows who is most likely to add a product, not the effect of a marketing message. A real campaign should be tested against a holdout group.
+- **No campaign data.** The dataset does not say who was contacted, so results describe natural product-adding behavior. Lift shows who is most likely to add a product, not the effect of a marketing message. A real campaign should be tested against a holdout group.
 - **Short test window.** The test covers two months, and the add rate fell over time (4.1% in training against 3.6% in testing).
 - **Rare products are noisy.** Products with a few hundred test additions (funds, securities, the particular accounts) have unreliable lifts.
 - **Nine products were left out.** Savings account, guarantees, home account, mortgage, derivatives account, loans, medium-term deposits, junior account and pension plan have fewer than 1,000 additions in 17 months. Mortgages and loans matter to a bank, but there is too little data to model them.
@@ -156,7 +156,7 @@ jupyter lab
 
 JupyterLab opens in your browser. Open `santander_cross_sell_analysis.ipynb` and run it from top to bottom: in the menu choose Kernel, then Restart Kernel and Run All Cells.
 
-The notebook is organised in sections, in this order:
+The notebook is organized in sections, in this order:
 
 | Section | What it does | Output |
 |---|---|---|
@@ -181,15 +181,6 @@ Some cleaning cells (for example adding the Unknown category) fail if they are r
 ```
 
 Each entry shows the share of customers contacted, the add rate in that group and the lift. Small differences from the numbers above are normal, because the training sample is random. The three charts are saved into `charts/`.
-
-### Troubleshooting
-
-| Problem | Fix |
-|---|---|
-| `ModuleNotFoundError` in a notebook | Run `%pip install <package>` in a cell, then restart the kernel. Make sure Jupyter was started from the activated environment. |
-| `No files found matching train_ver2.csv` | The file is still zipped or in the wrong folder. Unzip it into `data/raw/`. |
-| Notebook freezes or the kernel dies | Close other apps. Do not load the whole CSV with a plain `pd.read_csv`. Use the column-selection and small-type loading in the Load section of the notebook. |
-| Download button is missing on Kaggle | Accept the competition rules first. |
 
 ## Tools
 
